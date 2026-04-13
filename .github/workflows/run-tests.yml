@@ -40,7 +40,7 @@ jobs:
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=".venv,.git,__pycache__,docs"
           # exit-zero treats all errors as warnings
           # This ignores a bunch of linting errors
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=80 --statistics --ignore=E226,E231,E265,E501,W291,W293,W503 --exclude=".venv,.git,__pycache__,docs
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=80 --statistics --ignore=E226,E231,E265,E501,W291,W293,W503 --exclude=".venv,.git,__pycache__,docs"
       - name: Test with pytest and get coverage
         run: |
           coverage run --rcfile .coveragerc -m pytest && coverage report
