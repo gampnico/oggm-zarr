@@ -33,6 +33,8 @@ dependencies = [
     "pyyaml>=6.0.3",
     "pyproj>=3.7.2",
     "xvec>=0.5.2",
+    "aiohttp>=3.13.5",
+    "requests>=2.33.1",
 ]
 
 [project.optional-dependencies]

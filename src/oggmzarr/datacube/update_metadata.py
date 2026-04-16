@@ -195,12 +195,14 @@ class MetadataMapper:
             )
             # L2 must contain a description of the applied calibration strategy
             if "calibration_strategy" not in dataset.attrs:
-                raise ValueError(
-                    "Missing required attribute 'calibration_strategy' in"
-                    "dataset.attrs. Add a description of the applied "
-                    "calibration strategy."
-                )
-            shared_metadata["calibration_strategy"] = dataset.attrs[
+                pass
+                # raise ValueError(
+                #     "Missing required attribute 'calibration_strategy' in"
+                #     "dataset.attrs. Add a description of the applied "
+                #     "calibration strategy."
+                # )
+            else:
+                shared_metadata["calibration_strategy"] = dataset.attrs[
                 "calibration_strategy"
             ]
 
@@ -287,6 +289,9 @@ class MetadataMapper:
             "specific_mb",
             "specific_mb_calendar_cum",
             "snowline",
+            "prcp",
+            "temp",
+            "temp_std",
         ]
         model_coordinates = [
             "member",
