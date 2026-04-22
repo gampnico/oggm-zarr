@@ -207,6 +207,9 @@ class MetadataMapper:
             ]
 
         dataset.attrs.clear()  # clear old metadata
+        # TODO: why are we applying shared metadata to each dataset? Why
+        # not store this as data_tree metadata instead? This would avoid
+        # duplication across datasets.
         dataset.attrs.update(shared_metadata)
 
     def update_metadata(
@@ -296,6 +299,7 @@ class MetadataMapper:
         model_coordinates = [
             "member",
             "time",
+            "t",
             "rgi_id",
             "hydro_year",
             "hydro_month",

@@ -24,7 +24,7 @@ dependencies = [
     "numpy>=2.4.4",
     "pandas>=3.0.2",
     "xarray>=2026.2.0",
-    "zarr>=3.1.6",
+    "zarr>=3,<4",
     "oggm[full] @ git+https://github.com/OGGM/oggm",
     # "dtcg @ git+https://github.com/DTC-Glaciers/dtcg",
     "numcodecs>=0.16.5",
