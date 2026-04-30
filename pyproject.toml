@@ -24,8 +24,17 @@ dependencies = [
     "numpy>=2.4.4",
     "pandas>=3.0.2",
     "xarray>=2026.2.0",
-    "zarr>=3.1.6",
-    "oggm[full] @ git+https://github.com/OGGM/oggm"
+    "zarr>=3,<4",
+    "oggm[full] @ git+https://github.com/OGGM/oggm",
+    # "dtcg @ git+https://github.com/DTC-Glaciers/dtcg",
+    "numcodecs>=0.16.5",
+    "rioxarray>=0.19.0",
+    "schema>=0.7.8",
+    "pyyaml>=6.0.3",
+    "pyproj>=3.7.2",
+    "xvec>=0.5.2",
+    "aiohttp>=3.13.5",
+    "requests>=2.33.1",
 ]
 
 [project.optional-dependencies]
@@ -43,9 +52,13 @@ dev = [
     "flake8>=7.3.0",
     "hatchling>=1.29.0",
     "isort>=8.0.1",
-    "oggmzarr[tests,docs]",
+    # "oggmzarr[tests,docs]",
     "pylint>=4.0.5",
     "twine>=6.2.0",
+]
+jupyter = [
+    "ipykernel>=7.2.0",
+    "jupyter>=1.1.1",
 ]
 
 [tool.uv.sources]
@@ -73,3 +86,8 @@ packages = ["src/oggmzarr"]
 
 [tool.hatch.metadata]
 allow-direct-references = true
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.2.0",
+]

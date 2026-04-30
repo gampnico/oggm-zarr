@@ -1,0 +1,82 @@
+# coord_name:
+#   standard_name: https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html
+#   long_name: longer descriptive name of variable
+#   units: consult https://doi.org/10.5065/D6KD1WN0 for standard units or the standard name table
+
+x:
+  standard_name: projection_x_coordinate
+  long_name: x coordinate of projection
+  units: m
+
+y:
+  standard_name: projection_y_coordinate
+  long_name: y coordinate of projection
+  units: m
+
+t:
+  standard_name: time
+  long_name: time since the unix epoch of eolis observations
+  units: seconds since 1970-01-01 00:00:00
+
+t_wgms:
+  standard_name: time
+  long_name: the hydrological year of WGMS observations
+  units: year
+
+t_sfc_type:
+  standard_name: time
+  long_name: time since the unix epoch of surface type observations
+  units: seconds since 1970-01-01 00:00:00
+
+snowcover_frac:
+  standard_name: snowcover_frac
+  long_name: Snowcover fraction of elevation band
+  units: N/A
+
+# Model coordinates
+# for 'long_name' we use the 'description' output of OGGM dataset
+
+time:
+  standard_name: time
+  long_name: N/A
+  units: Float year
+
+hydro_year:
+  standard_name: hydro_year
+  long_name: N/A
+  units: Hydrological year
+
+hydro_month:
+  standard_name: hydro_month
+  long_name: N/A
+  units: Hydrological month
+
+calendar_year:
+  standard_name: calendar_year
+  long_name: N/A
+  units: Calendar year
+
+calendar_month:
+  standard_name: calendar_month
+  long_name: N/A
+  units: Calendar month
+
+month_2d:
+  standard_name: month_2d
+  long_name: N/A
+  units: Calendar month
+
+calendar_month_2d:
+  standard_name: month_2d
+  long_name: N/A
+  units: Calendar month
+
+rgi_id:
+  standard_name: rgi_id
+  long_name: N/A
+  units: N/A
+
+member:
+  standard_name: member
+  long_name: N/A
+  units: N/A

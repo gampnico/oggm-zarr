@@ -34,6 +34,7 @@ jobs:
       - name: Install dependencies
         run: |
           uv sync --all-extras --dev
+          uv pip install -e .[tests]
       - name: Lint with flake8
         run: |
           # stop if Python syntax errors or undefined names
@@ -43,4 +44,4 @@ jobs:
           uv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=80 --statistics --ignore=E226,E231,E265,E501,W291,W293,W503 --exclude=".venv,.git,__pycache__,docs"
       - name: Test with pytest and get coverage
         run: |
-          uv run coverage run --rcfile .coveragerc -m pytest && coverage report
+          uv run coverage run --rcfile .coveragerc -m pytest && uv run coverage report
