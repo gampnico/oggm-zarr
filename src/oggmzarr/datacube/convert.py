@@ -1,3 +1,5 @@
+"""Copyright (c) 2026, Nicolas Gampierakis"""
+
 import xarray as xr
 from pathlib import Path
 import numpy as np

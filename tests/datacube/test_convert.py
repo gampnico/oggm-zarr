@@ -1,6 +1,5 @@
-"""Copyright (c) 2026, Nicolas Gampierakis
+"""Copyright (c) 2026, Nicolas Gampierakis"""
 
-"""
 from pathlib import Path
 from unittest.mock import MagicMock
 
@@ -32,8 +31,6 @@ class TestConvert:
 
         result = convert.get_tranche(data, type_only=type_only)
         assert isinstance(result, dict)
-
-        
 
         if not type_only:
             for v in result.values():
@@ -161,12 +158,9 @@ class TestConvert:
         assert isinstance(result["downstream_line"], xr.DataArray)
         assert result["downstream_line"].dims == ("x", "y")
 
-
     def test_convert_pickle_to_datatree_returns_datatree(self):
         pickle_data = {
-            "inversion_input": {
-                "/": xr.Dataset({"dx": xr.DataArray([10.0, 20.0])})
-            },
+            "inversion_input": {"/": xr.Dataset({"dx": xr.DataArray([10.0, 20.0])})},
         }
 
         result = convert.convert_pickle_to_datatree(pickle_data)
@@ -175,9 +169,7 @@ class TestConvert:
 
     def test_convert_pickle_to_datatree_adds_dict_as_child(self):
         pickle_data = {
-            "inversion_input": {
-                "/": xr.Dataset({"dx": xr.DataArray([10.0, 20.0])})
-            },
+            "inversion_input": {"/": xr.Dataset({"dx": xr.DataArray([10.0, 20.0])})},
         }
 
         result = convert.convert_pickle_to_datatree(pickle_data)
