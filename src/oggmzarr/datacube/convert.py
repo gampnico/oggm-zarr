@@ -5,6 +5,7 @@ from pathlib import Path
 import numpy as np
 import os
 import shapely
+from oggm import Centerline
 
 
 def get_pickle_paths(gdir) -> list[Path]:
@@ -90,6 +91,32 @@ def get_downstream_line(pickle: dict) -> dict:
         pickle["downstream_line"] = coordinates
     return pickle
 
+def get_inversion_flowlines(pickle: list) -> dict:
+    """Convert inversion_flowlines pickle data into zarr-compatible structure."""
+    
+    new_pickle = []
+    if isinstance(pickle, list) and all(isinstance(flowline, Centerline) for flowline in pickle):
+        # Get all attributes necessary for reconstructing a Centerline
+        data = {
+            "line": pickle[0].line,
+            "dx": pickle[0].dx,
+            "surface_h": pickle[0].surface_h,
+            "orig_head": pickle[0].orig_head,
+            "rgi_id": pickle[0].rgi_id,
+            "map_dx": pickle[0].map_dx,
+            # These cannot be passed via Centerline.__init__
+            "order": pickle[0].order,
+            "_widths": pickle[0]._widths,
+            "is_rectangular": pickle[0].is_rectangular,
+            "is_trapezoid": pickle[0].is_trapezoid,
+            "apparent_mb": pickle[0].apparent_mb,
+            "flux": pickle[0].flux,
+            "flux_out": pickle[0].flux_out,
+        }
+        new_pickle.append(data)
+
+    return new_pickle
+
 
 def convert_pickle_to_datatree(pickle_data: dict) -> xr.DataTree:
     """Convert a dictionary of pickles into an xarray DataTree."""
@@ -98,7 +125,8 @@ def convert_pickle_to_datatree(pickle_data: dict) -> xr.DataTree:
         try:
             if name == "downstream_line":
                 data = get_downstream_line(pickle)
-
+            elif name =="inversion_flowlines":
+                data = get_inversion_flowlines(pickle)[0]
             elif isinstance(pickle, list):
                 data = pickle[0]
             elif isinstance(pickle, dict):
@@ -118,7 +146,7 @@ def convert_pickle_to_datatree(pickle_data: dict) -> xr.DataTree:
 
 
 def write_zarr(
-    data_tree,
+    data_tree: xr.DataTree,
     storage_directory: str,
     overwrite: bool = True,
     zarr_format: int = 2,
@@ -149,7 +177,7 @@ def write_zarr(
 
 
 def add_datacube(
-    data_tree,
+    data_tree: xr.DataTree,
     datacubes: dict,
     datacube_name: str,
     overwrite: bool = False,

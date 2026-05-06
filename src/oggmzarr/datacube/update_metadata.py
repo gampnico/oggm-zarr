@@ -203,8 +203,8 @@ class MetadataMapper:
                 # )
             else:
                 shared_metadata["calibration_strategy"] = dataset.attrs[
-                "calibration_strategy"
-            ]
+                    "calibration_strategy"
+                ]
 
         dataset.attrs.clear()  # clear old metadata
         # TODO: why are we applying shared metadata to each dataset? Why

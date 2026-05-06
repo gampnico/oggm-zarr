@@ -338,12 +338,14 @@ class GeoZarrHandler(MetadataMapper):
 
         self.data_tree[ds_name] = xr.DataTree(dataset=ds)
 
-    def add_shapefile(self: GeoZarrHandler, shapefile: gpd.GeoDataFrame, shapefile_name: str, overwrite: bool = False
+    def add_shapefile(
+        self: GeoZarrHandler,
+        shapefile: gpd.GeoDataFrame,
+        shapefile_name: str,
+        overwrite: bool = False,
     ) -> None:
         if shapefile_name in self.data_tree.children and not overwrite:
             raise ValueError(f"Shapefile '{shapefile_name}' already exists.")
-        
-        
 
     def add_datacube(
         self: GeoZarrHandler,
@@ -446,6 +448,7 @@ class GeoZarrHandler(MetadataMapper):
             raise KeyError(f"{ds_name} layer not found in the data tree.")
 
         return layer
+
 
 class OggmZarrHandler(GeoZarrHandler, MetadataMapper):
     def __init__(
